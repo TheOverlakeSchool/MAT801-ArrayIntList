@@ -30,4 +30,36 @@ public class ArrayIntList {
         str += "]";
         return str;
     }
+
+    public int get(int index) {
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        return nums[index];
+    }
+
+    public void set(int index, int value) {
+        // TODO Can we ADD here? or only SET existing
+        // indexes?
+        if (index >= size || index < 0) {
+            throw new IndexOutOfBoundsException();
+        }
+        nums[index] = value;
+    }
+
+    public int size() {
+        return size;
+    }
+
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+    public void remove(int index) {
+        for (int i = index; i < size; i++) {
+            nums[i] = nums[i + 1];
+        }
+        size--;
+        nums[size] = 0;
+    }
 }
