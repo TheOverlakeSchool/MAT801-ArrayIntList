@@ -11,10 +11,10 @@ public class ArrayIntListClient {
             list.add(i);
         }
 
-        System.out.println(list.size());
-//        list.remove(9);
-//        System.out.println(list.size());
-//        System.out.println(list);
+        System.out.println(list);
+        list.remove(9);
+
+        System.out.println(list);
     }
 }
 

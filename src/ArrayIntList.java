@@ -1,13 +1,23 @@
+import java.util.Arrays;
+
 public class ArrayIntList {
     private int size;
     private int[] nums;
     static final int DEFAULT_CAPACITY = 10;
 
     public ArrayIntList() {
-        size = 0;
-        nums = new int[DEFAULT_CAPACITY];
+        this(DEFAULT_CAPACITY);
     }
+
+    public ArrayIntList(int capacity) {
+        size = 0;
+        nums = new int[capacity];
+    }
+
     public void add(int value) {
+        if (size >= nums.length) {
+            nums = Arrays.copyOf(nums, nums.length * 2);
+        }
         nums[size] = value;
         size++;
     }
@@ -39,8 +49,7 @@ public class ArrayIntList {
     }
 
     public void set(int index, int value) {
-        // TODO Can we ADD here? or only SET existing
-        // indexes?
+
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
@@ -56,10 +65,23 @@ public class ArrayIntList {
     }
 
     public void remove(int index) {
-        for (int i = index; i < size; i++) {
-            nums[i] = nums[i + 1];
+        for (int i = index; i < size -1; i++) {
+                nums[i] = nums[i + 1];
         }
         size--;
         nums[size] = 0;
+    }
+
+    public int indexOf(int value) {
+        for (int i = 0; i < size; i++) {
+            if (value == nums[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public boolean contains(int value) {
+        return this.indexOf(value) > -1;
     }
 }
