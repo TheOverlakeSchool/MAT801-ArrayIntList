@@ -84,4 +84,31 @@ public class ArrayIntList {
     public boolean contains(int value) {
         return this.indexOf(value) > -1;
     }
+
+    public void addAll(int[] intList) {
+        for (int i: intList) {
+            add(i);
+        }
+    }
+
+    public int binarySearch(int value) {
+        int min = 0;
+        int max = size - 1;
+        int mid = max / 2;
+        while (min <= max) {
+            if (value == nums[mid]) {
+                return mid;
+            } else if (value > nums[mid]) {
+                min = mid + 1;
+            } else {
+                max = mid - 1;
+            }
+            mid = (max + min) / 2;
+        }
+        return -(mid + 1);
+    }
+
+    public void sort() {
+        Arrays.sort(nums,0, size);
+    }
 }

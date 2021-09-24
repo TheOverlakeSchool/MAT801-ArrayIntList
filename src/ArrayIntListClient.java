@@ -7,14 +7,11 @@ public class ArrayIntListClient {
         // range is start INCLUSIVE, end EXCLUSIVE
         // IntStream.range(1,10).forEach(n -> list.add(n));
 
-        for (int i = 1; i <=10; i++) {
-            list.add(i);
-        }
+        int[] intList = {-4,2,7,10,15,20,22,25,30,36,42,50,56,68,85,92,103};
+        list.addAll(intList);
 
-        System.out.println(list);
-        list.remove(9);
-
-        System.out.println(list);
+        list.sort();
+        System.out.println(list.binarySearch(36));
     }
 }
 
