@@ -11,6 +11,7 @@ public class ArrayIntList {
     }
 
     public ArrayIntList(int i) {
+        super();
         nums = new int[i];
     }
 
@@ -37,6 +38,11 @@ public class ArrayIntList {
         size++;
     }
 
+    public int get(int index) {
+        isValidIndex(index);
+        return nums[index];
+    }
+
     private void ensureCapacity() {
         if (size == nums.length) {
             nums = Arrays.copyOf(nums, size * 2);
@@ -53,8 +59,49 @@ public class ArrayIntList {
         return str + "]";
     }
 
+
+
     public int size() {
        return size;
     }
 
+    public int indexOf(int value) {
+        for (int i = 0; i < size; i++) {
+            if (nums[i] == value) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public int remove(int index) {
+        isValidIndex(index);
+        int temp = nums[index];
+        for (int i = index; i < size - 1; i++) {
+            nums[i] = nums[i+1];
+        }
+        size--;
+        nums[size] = 0;
+        return temp;
+    }
+
+    private void isValidIndex(int index) {
+        if (index >= size) {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+    }
+
+    public boolean isEmpty() {
+        return size() == 0;
+    }
+
+    public boolean contains(int value) {
+        return indexOf(value) != -1;
+    }
+
+
+    public void clear() {
+        size = 0;
+        nums = new int[DEFAULT_CAPACITY];
+    }
 }
