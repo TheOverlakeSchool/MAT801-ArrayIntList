@@ -18,7 +18,11 @@ public class ArrayIntListClient {
         System.out.println("Is empty? " + list.isEmpty());
         System.out.println("Contains 42?" + list.contains(42));
         System.out.println("Contains 7?" + list.contains(7));
-        list.clear();
+        IntList list2 = new ArrayIntList();
+        list2.add(1);
+        list2.add(2);
+        list2.add(3);
+        list.addAll(list2);
         System.out.println(list);
     }
 }

@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-public class ArrayIntList {
+public class ArrayIntList implements IntList {
 
     private int[] nums;
     private int size;
@@ -23,8 +23,16 @@ public class ArrayIntList {
     }
 
     public void addAll(int[] values) {
-        for (int value : values) {
-            add(value);
+        addAll(values, values.length);
+    }
+
+    public void addAll(IntList list2) {
+        addAll(list2.nums, list2.size);
+    }
+
+    private void addAll(int[] numsArray, int end) {
+        for (int i = 0; i < end; i++) {
+            add(numsArray[i]);
         }
     }
 
@@ -104,4 +112,6 @@ public class ArrayIntList {
         size = 0;
         nums = new int[DEFAULT_CAPACITY];
     }
+
+
 }
