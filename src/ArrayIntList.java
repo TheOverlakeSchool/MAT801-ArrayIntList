@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Iterator;
 
 public class ArrayIntList implements IntList {
 
@@ -27,7 +28,12 @@ public class ArrayIntList implements IntList {
     }
 
     public void addAll(IntList list2) {
-        addAll(list2.nums, list2.size);
+//        for (int i = 0; i < list2.size(); i++) {
+//            add(list2.get(i));
+//        }
+        for (int i : list2) {
+            add(i);
+        }
     }
 
     private void addAll(int[] numsArray, int end) {
@@ -114,4 +120,23 @@ public class ArrayIntList implements IntList {
     }
 
 
+    @Override
+    public Iterator<Integer> iterator() {
+        return new ArrayIntListIterator();
+    }
+
+    private class ArrayIntListIterator implements Iterator<Integer> {
+
+        int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        public Integer next() {
+            return get(currentIndex++);
+        }
+    }
 }
